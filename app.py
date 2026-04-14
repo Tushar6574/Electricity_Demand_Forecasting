@@ -6,7 +6,7 @@ import requests
 import os
 from dotenv import load_dotenv
 load_dotenv()
-# --- 1. CONFIGURATION & MODEL LOADING ---
+
 st.set_page_config(page_title="Electricity Demand Forecaster", layout="wide")
 MODEL_PATH = 'electricity_xgb_prediction_model.pkl'
 
@@ -18,8 +18,6 @@ def load_model():
 
 model = load_model()
 
-# --- 2. WEATHER API LOGIC ---
-# Replace with your actual key or set as a GitHub Secret/Environment Variable
 OPENWEATHER_API_KEY =st.secrets.get("OPENWEATHER_API_KEY") or os.getenv("OPENWEATHER_API_KEY")
 
 
@@ -40,17 +38,17 @@ def get_live_weather(city):
         return None
 
 
-# --- 3. UI LAYOUT ---
-st.title("⚡ Smart Electricity Demand Forecasting")
+
+st.title(" Smart Electricity Demand Forecasting")
 st.markdown("This app predicts grid load using **XGBoost** and real-time weather data.")
 
-# Sidebar for Inputs
+
 st.sidebar.header("Step 1: Location & Time")
 city = st.sidebar.text_input("Enter City for Live Weather", "Nagpur")
 selected_date = st.sidebar.date_input("Select Date", datetime.date.today())
 selected_time = st.sidebar.slider("Select Hour", 0, 23, 12)
 
-# Weather Logic
+
 weather_data = None
 if st.sidebar.button("Fetch Live Weather"):
     weather_data = get_live_weather(city)
@@ -58,22 +56,21 @@ if st.sidebar.button("Fetch Live Weather"):
 st.sidebar.markdown("---")
 st.sidebar.header("Step 2: Environmental & Historical Data")
 
-# Default values updated if weather is fetched
+
 default_temp = weather_data['temp'] if weather_data else 25.0
 default_hum = weather_data['hum'] if weather_data else 50.0
 
 temp = st.sidebar.number_input("Temperature (°C)", value=float(default_temp))
 hum = st.sidebar.number_input("Humidity (%)", value=float(default_hum))
 
-# Historical Lags (Required by your model's 14 features)
+
 st.sidebar.subheader("Time-Series Features")
 lag_24 = st.sidebar.number_input("Demand 24h ago (MW)", value=2500.0)
 lag_168 = st.sidebar.number_input("Demand 7 days ago (MW)", value=2550.0)
 roll_mean = st.sidebar.number_input("24h Rolling Mean (MW)", value=2400.0)
 roll_std = st.sidebar.number_input("24h Rolling Std (MW)", value=100.0)
 
-# --- 4. FEATURE ENGINEERING ---
-# Automatically calculating time features from the date picker
+
 day_of_week = selected_date.weekday()
 month = selected_date.month
 year = selected_date.year
@@ -82,7 +79,7 @@ week_of_year = selected_date.isocalendar()[1]
 quarter = (month - 1) // 3 + 1
 is_weekend = 1 if day_of_week >= 5 else 0
 
-# The exact order and names required by your XGBoost model
+
 feature_columns = [
     'hour', 'dayofweek', 'month', 'year', 'dayofyear', 'weekofyear',
     'quarter', 'is_weekend', 'Temperature', 'Humidity',
@@ -108,7 +105,7 @@ input_dict = {
 
 input_df = pd.DataFrame(input_dict)[feature_columns]
 
-# --- 5. PREDICTION & DISPLAY ---
+
 col1, col2 = st.columns(2)
 
 with col1:
