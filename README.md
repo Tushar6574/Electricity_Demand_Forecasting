@@ -47,9 +47,12 @@ The XGBoost model achieves high accuracy by capturing local patterns and weather
 ├── electricity_data.db                           # DuckDB: Demand records
 ├── model_reports.db                              # DuckDB: Model performance tracking
 ├── images/                                       # Exported visualizations
-├── ELECTRICITY_SCHEMA_SKILL.md                   # Database schema documentation
-├── Forecasting_Skill.md                          # Forecasting SOPs
-└── Reporting_Skill.md                            # Model reporting guidelines
+└── skills/                                       # All skill/SOP documentation
+    ├── ELECTRICITY_SCHEMA_SKILL.md               # Database schema & validation
+    ├── DUCKDB_SCHEMA_SKILL.md                    # DuckDB operations reference
+    ├── GRID_OPERATIONS_SKILL.md                  # Grid operations SOP
+    ├── Forecasting_Skill.md                      # Forecasting pipeline SOP
+    └── Reporting_Skill.md                        # Model reporting guidelines
 ```
 
 ---
@@ -87,7 +90,12 @@ streamlit run app.py
 ---
 
 ## 📜 Documentation & Skills
-This repository includes specialized "Skill" files that define the project's standard operating procedures:
-- **[Forecasting_Skill.md](Forecasting_Skill.md)**: Guidelines for feature engineering and model training.
-- **[Reporting_Skill.md](Reporting_Skill.md)**: Standardized 5-step model reporting process.
-- **[ELECTRICITY_SCHEMA_SKILL.md](ELECTRICITY_SCHEMA_SKILL.md)**: DuckDB table structures and validation rules.
+All skill files are organized in the [`skills/`](skills/) subdirectory. These define the project's standard operating procedures:
+
+| Skill File | Description |
+| :--- | :--- |
+| **[ELECTRICITY_SCHEMA_SKILL.md](skills/ELECTRICITY_SCHEMA_SKILL.md)** | DuckDB table structures and validation rules |
+| **[DUCKDB_SCHEMA_SKILL.md](skills/DUCKDB_SCHEMA_SKILL.md)** | DuckDB operations and query reference |
+| **[GRID_OPERATIONS_SKILL.md](skills/GRID_OPERATIONS_SKILL.md)** | Grid operations and load management SOP |
+| **[Forecasting_Skill.md](skills/Forecasting_Skill.md)** | Feature engineering and model training guidelines |
+| **[Reporting_Skill.md](skills/Reporting_Skill.md)** | Standardized 5-step model reporting process |
