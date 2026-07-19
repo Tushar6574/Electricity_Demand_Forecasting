@@ -2,7 +2,7 @@
 
 This project implements a robust, end-to-end electricity demand forecasting pipeline using traditional Machine Learning (XGBoost) and a modern Foundation Model (Google's TimesFM). The system is integrated with DuckDB for high-performance data storage and model reporting.
 
-## 🚀 Key Features
+## Key Features
 
 - **Hybrid Modeling**: Compare the performance of a trained **XGBoost** model against **TimesFM 2.0** (500M parameters) zero-shot forecasting.
 - **DuckDB Integration**: 
@@ -14,7 +14,7 @@ This project implements a robust, end-to-end electricity demand forecasting pipe
 
 ---
 
-## 📊 Visual Insights
+## Visual Insights
 
 ### Demand Trends
 The dataset exhibits strong daily and seasonal seasonality, with significant correlations to ambient temperature.
@@ -37,7 +37,7 @@ The XGBoost model achieves high accuracy by capturing local patterns and weather
 
 ---
 
-## 🛠 Project Structure
+## Project Structure
 
 ```text
 .
@@ -57,7 +57,7 @@ The XGBoost model achieves high accuracy by capturing local patterns and weather
 
 ---
 
-## 🚦 Getting Started
+## Getting Started
 
 ### 1. Prerequisites
 Ensure you have Python 3.10+ installed.
@@ -80,7 +80,7 @@ streamlit run app.py
 
 ---
 
-## 📈 Model Performance (Sample)
+## Model Performance (Sample)
 
 | Model | RMSE | MAE | MAPE |
 | :--- | :--- | :--- | :--- |
@@ -89,7 +89,7 @@ streamlit run app.py
 
 ---
 
-## 📜 Documentation & Skills
+## Documentation & Skills
 All skill files are organized in the [`skills/`](skills/) subdirectory. These define the project's standard operating procedures:
 
 | Skill File | Description |
